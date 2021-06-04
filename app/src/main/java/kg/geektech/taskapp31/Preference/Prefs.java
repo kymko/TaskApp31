@@ -1,4 +1,4 @@
-package kg.geektech.taskapp31;
+package kg.geektech.taskapp31.Preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -14,7 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import kg.geektech.taskapp31.Prefs;
+import kg.geektech.taskapp31.Preference.Prefs;
 import kg.geektech.taskapp31.R;
 import kg.geektech.taskapp31.interfaces.OnItemClickListener;
 

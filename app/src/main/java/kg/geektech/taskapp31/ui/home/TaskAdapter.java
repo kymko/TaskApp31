@@ -1,5 +1,7 @@
 package kg.geektech.taskapp31.ui.home;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import kg.geektech.taskapp31.App;
 import kg.geektech.taskapp31.R;
 import kg.geektech.taskapp31.models.Task;
 
@@ -57,6 +60,31 @@ public class TaskAdapter  extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
         public void bind(Task task) {
             textTitle.setText(task.getTitle());
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(v.getContext(),R.style.MyDialogTheme);
+                    dialog.setMessage("Delete?");
+                    dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            App.getAppDatabase().taskDao().remove(task);
+                            list.remove(getAdapterPosition());
+                            notifyDataSetChanged();
+                        }
+                    });
+                    dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            dialog.dismiss();
+
+                        }
+                    });
+                    dialog.show();
+                    return true;
+                }
+            });
         }
     }
 }
