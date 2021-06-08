@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        Prefs prefs = new Prefs(this);
 //        if (!prefs.isShown()) navController.navigate(R.id.boardFragment);
-
+       // navController.navigate(R.id.phoneFragment);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -69,3 +69,43 @@ public class MainActivity extends AppCompatActivity {
         return navController.navigateUp();
     }
 }
+
+
+
+
+
+
+//                      3 Дз.
+//        1. Добавить картинки для страниц
+//        2. Добавить кнопку на последнюю страницу, по нажатию открыть Home
+//        3. TabLayout
+//        4. Добавить кнопку SKIP на самый верх страницы (она не должна двигаться)
+
+
+//                      4 Дз.
+//        1. В профиле добавить поле для ввода имени без кнопки сохранения
+//        2. Дизайн профиля
+//        3. Добавить в меню для очистки preferences
+
+
+//                     5 Дз.
+//        1. Добавить кнопку (menu) сортировки списка по алфавиту
+//        2. На долгое нажатие удаление из бд
+
+
+//                     6 Дз.
+//        1. Показать вью для ввода кода смс
+//        2. Обратный отсчет, по истечению показать обратно первое вью
+
+
+//                     7 Дз.
+//        1. В Dashboard показывать данные из FireStore
+//        2. Чтоб можно было удалять через AlertDialog
+
+
+//                     8 Дз.
+//
+//
+
+
+
