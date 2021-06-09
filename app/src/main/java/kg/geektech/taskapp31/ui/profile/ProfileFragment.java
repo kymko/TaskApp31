@@ -47,11 +47,7 @@ public class ProfileFragment extends Fragment {
         return view;
 
 
-
-
-
     }
-
 
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
@@ -80,14 +76,13 @@ public class ProfileFragment extends Fragment {
                     binding.profilePhoto.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            bundle.putString("action",strUri);
+                            bundle.putString("action", strUri);
 
                             //App.getAppDatabase().taskDao().insert(new Image(strUri));
 
-                            Navigation.findNavController(v).navigate(R.id.action_profileFragment_to_avatarFragment,bundle);
+                            Navigation.findNavController(v).navigate(R.id.action_profileFragment_to_avatarFragment, bundle);
                         }
                     });
-
 
                 }
             });
@@ -100,7 +95,6 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mGetContent.launch("image/*");
-
             }
         });
 
