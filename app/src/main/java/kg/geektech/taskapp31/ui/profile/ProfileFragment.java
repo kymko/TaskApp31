@@ -25,8 +25,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import kg.geektech.taskapp31.App;
-import kg.geektech.taskapp31.Image;
 import kg.geektech.taskapp31.Preference.Prefs;
 import kg.geektech.taskapp31.R;
 import kg.geektech.taskapp31.databinding.FragmentProfileBinding;
@@ -49,7 +47,11 @@ public class ProfileFragment extends Fragment {
         return view;
 
 
+
+
+
     }
+
 
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
@@ -60,7 +62,10 @@ public class ProfileFragment extends Fragment {
                     FirebaseStorage storage = FirebaseStorage.getInstance();
                     StorageReference storageRef = storage.getReference();
 
-                    StorageReference riversRef = storageRef.child("images/" + uri.getLastPathSegment());
+
+                    StorageReference riversRef = storageRef.child("images/" + uri);
+
+
                     UploadTask uploadTask;
                     uploadTask = riversRef.putFile(uri);
 
@@ -77,7 +82,7 @@ public class ProfileFragment extends Fragment {
                         public void onClick(View v) {
                             bundle.putString("action",strUri);
 
-                            App.getAppDatabase().taskDao().insert(new Image(strUri));
+                            //App.getAppDatabase().taskDao().insert(new Image(strUri));
 
                             Navigation.findNavController(v).navigate(R.id.action_profileFragment_to_avatarFragment,bundle);
                         }
