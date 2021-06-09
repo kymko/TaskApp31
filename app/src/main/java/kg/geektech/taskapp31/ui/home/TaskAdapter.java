@@ -17,7 +17,7 @@ import kg.geektech.taskapp31.App;
 import kg.geektech.taskapp31.R;
 import kg.geektech.taskapp31.models.Task;
 
-public class TaskAdapter  extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
+public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     private ArrayList<Task> list = new ArrayList<>();
 
@@ -64,7 +64,7 @@ public class TaskAdapter  extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                 @Override
                 public boolean onLongClick(View v) {
 
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(v.getContext(),R.style.MyDialogTheme);
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(v.getContext(), R.style.MyDialogTheme);
                     dialog.setMessage("Delete?");
                     dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override

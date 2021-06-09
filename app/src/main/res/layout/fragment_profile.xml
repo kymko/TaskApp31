@@ -8,30 +8,55 @@
     android:padding="16dp"
     tools:context=".ui.profile.ProfileFragment">
 
-    <ImageView
-        android:id="@+id/profilePhoto"
-        android:layout_width="250dp"
+
+    <RelativeLayout
+        android:id="@+id/profile_container"
+        android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginBottom="360dp"
-        android:background="@drawable/layer_list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="#fece2F"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/profilePhoto"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginBottom="360dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/layer_list"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/profile_select"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/camera"
+            android:backgroundTint="#03C8F4"
+            />
+
+
+    </RelativeLayout>
 
 
     <EditText
         android:id="@+id/editName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profilePhoto"
-        android:layout_marginTop="24sp"
+        android:layout_below="@+id/profile_container"
+        android:layout_marginTop="26dp"
         android:background="@drawable/bg_edit"
         android:hint="Введите ваше имя"
         android:padding="16dp"
+        android:drawableLeft="@drawable/person"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilePhoto" />
-
+        app:layout_constraintTop_toBottomOf="@+id/profile_container" />
 
     <EditText
         android:id="@+id/editPhone"
@@ -42,6 +67,7 @@
         android:background="@drawable/bg_edit"
         android:hint="Телефон номер"
         android:padding="16dp"
+        android:drawableLeft="@drawable/phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editName" />
@@ -53,6 +79,7 @@
         android:layout_below="@+id/editPhone"
         android:layout_marginTop="16sp"
         android:background="@drawable/bg_edit"
+        android:drawableLeft="@drawable/date"
         android:hint="Дата рождения"
         android:padding="16dp"
 
@@ -68,6 +95,7 @@
         android:layout_marginTop="16sp"
         android:background="@drawable/bg_edit"
         android:hint="Введите адресс"
+        android:drawableLeft="@drawable/address"
         android:padding="16dp"
 
         app:layout_constraintTop_toBottomOf="@+id/editData" />
@@ -79,6 +107,7 @@
         android:layout_below="@+id/editAddress"
         android:layout_marginTop="16sp"
         android:background="@drawable/bg_edit"
+        android:drawableLeft="@drawable/email"
         android:hint="@string/email"
         android:padding="16dp"
 

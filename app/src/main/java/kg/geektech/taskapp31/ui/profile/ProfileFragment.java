@@ -9,6 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,11 +19,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import kg.geektech.taskapp31.App;
+import kg.geektech.taskapp31.Image;
 import kg.geektech.taskapp31.Preference.Prefs;
 import kg.geektech.taskapp31.R;
 import kg.geektech.taskapp31.databinding.FragmentProfileBinding;
@@ -43,6 +47,8 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         return view;
+
+
     }
 
 
@@ -50,10 +56,33 @@ public class ProfileFragment extends Fragment {
             new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri uri) {
+
+                    FirebaseStorage storage = FirebaseStorage.getInstance();
+                    StorageReference storageRef = storage.getReference();
+
+                    StorageReference riversRef = storageRef.child("images/" + uri.getLastPathSegment());
+                    UploadTask uploadTask;
+                    uploadTask = riversRef.putFile(uri);
+
                     Glide.with(requireActivity())
                             .load(uri)
                             .circleCrop()
                             .into(binding.profilePhoto);
+
+
+                    String strUri = uri.toString();
+                    Bundle bundle = new Bundle();
+                    binding.profilePhoto.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            bundle.putString("action",strUri);
+
+                            App.getAppDatabase().taskDao().insert(new Image(strUri));
+
+                            Navigation.findNavController(v).navigate(R.id.action_profileFragment_to_avatarFragment,bundle);
+                        }
+                    });
+
 
                 }
             });
@@ -62,7 +91,7 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.profilePhoto.setOnClickListener(new View.OnClickListener() {
+        binding.profileSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mGetContent.launch("image/*");
@@ -104,14 +133,14 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        getActivity().getMenuInflater().inflate(R.menu.sort_menu,menu);
+        getActivity().getMenuInflater().inflate(R.menu.sort_menu, menu);
 
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             // calling method for clear preference
             case R.id.clear:
@@ -120,4 +149,5 @@ public class ProfileFragment extends Fragment {
         }
         return true;
     }
+
 }

@@ -33,6 +33,7 @@ public class DashboardFragment extends Fragment {
     private FirebaseFirestore firebaseFirestore;
     FirestoreRecyclerAdapter adapter;
     private RecyclerView rvDashboard;
+    Task task;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
@@ -65,12 +66,17 @@ public class DashboardFragment extends Fragment {
             protected void onBindViewHolder(@NonNull TaskViewHolder holder, int position, @NonNull Task model) {
                 holder.title.setText(model.getTitle());
 
-                holder.bind(model);
+
+                holder.bind(task);
             }
         };
-        rvDashboard.setHasFixedSize(true);
-        rvDashboard.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvDashboard.setAdapter(adapter);
+//        rvDashboard.setHasFixedSize(true);
+//        rvDashboard.setLayoutManager(new LinearLayoutManager(getContext()));
+//        rvDashboard.setAdapter(adapter);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        rvDashboard.setLayoutManager(llm);
+        rvDashboard.setAdapter( adapter );
 
     }
 
@@ -93,7 +99,7 @@ public class DashboardFragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             FirebaseFirestore db = FirebaseFirestore.getInstance();
-                            DocumentReference reference = db.collection("task").document(model.getTitle());
+                            DocumentReference reference = db.collection("task").document();
 
                             reference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -102,6 +108,7 @@ public class DashboardFragment extends Fragment {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(requireActivity(), "item deleted!", Toast.LENGTH_SHORT).show();
                                         adapter.notifyDataSetChanged();
+                                        rvDashboard.setAdapter(adapter);
                                     } else {
                                         Toast.makeText(requireActivity(), "error!!!", Toast.LENGTH_SHORT).show();
                                     }
