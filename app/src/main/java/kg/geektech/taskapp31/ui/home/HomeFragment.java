@@ -23,12 +23,14 @@ import java.util.List;
 
 import kg.geektech.taskapp31.App;
 import kg.geektech.taskapp31.R;
+import kg.geektech.taskapp31.interfaces.OnItemClickListener;
 import kg.geektech.taskapp31.models.Task;
 
 public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private TaskAdapter adapter;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

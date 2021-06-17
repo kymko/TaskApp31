@@ -51,7 +51,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
             btnStart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.onClickStart();
+                   // onItemClickListener.onClickStart();
                 }
             });
         }

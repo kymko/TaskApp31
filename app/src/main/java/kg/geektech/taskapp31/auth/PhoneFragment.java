@@ -37,6 +37,7 @@ public class PhoneFragment extends Fragment {
     private Button btnContinue;
     private ProgressBar progressBar;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks callbacks;
+    private String code;
 
 
     @Override
@@ -75,6 +76,8 @@ public class PhoneFragment extends Fragment {
         callbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                code = phoneAuthCredential.getSmsCode();
+
                 Log.e("Phone", "onVerificationCompleted");
                 btnContinue.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
@@ -93,9 +96,8 @@ public class PhoneFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
                 Intent intent = new Intent(getActivity(), VerifyPhoneActivity.class);
                 intent.putExtra("mobile", editPhone.getText().toString());
-                intent.putExtra("verificationId",verificationId);
+                    intent.putExtra("verificationId",verificationId);
                 startActivity(intent);
-
             }
         };
     }

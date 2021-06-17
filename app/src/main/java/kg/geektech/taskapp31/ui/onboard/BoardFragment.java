@@ -32,12 +32,12 @@ public class BoardFragment extends Fragment {
         ViewPager2 viewPager = view.findViewById(R.id.viewPager);
         BoardAdapter adapter = new BoardAdapter();
         viewPager.setAdapter(adapter);
-        adapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onClickStart() {
-                close();
-            }
-        });
+//        adapter.setOnItemClickListener(new OnItemClickListener() {
+//            @Override
+//            public void onClickStart() {
+//                close();
+//            }
+//        });
         requireActivity().getOnBackPressedDispatcher()
                 .addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
                     @Override

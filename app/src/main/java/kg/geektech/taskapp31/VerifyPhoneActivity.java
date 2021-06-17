@@ -51,6 +51,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.VISIBLE);
                     btnVerify.setVisibility(View.VISIBLE);
 
+
                     PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(verificationId, code);
                     FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override

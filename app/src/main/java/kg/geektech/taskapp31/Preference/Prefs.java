@@ -2,6 +2,7 @@ package kg.geektech.taskapp31.Preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 
 public class Prefs {
 
@@ -29,5 +30,13 @@ public class Prefs {
 
     public String getString(String autoSave){
         return preferences.getString(autoSave, "");
+
+    }
+    public void saveImage(Uri uri){
+        preferences.edit().putString("avatar",uri.toString()).apply();
+    }
+    public Uri getAvatar(){
+        return Uri.parse(preferences.getString("avatar",null));
+
     }
 }
